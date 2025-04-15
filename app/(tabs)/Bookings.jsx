@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D6E6F2',
     paddingHorizontal: 16,
-    paddingTop: 40,
+    paddingTop: 30,
   },
   heading: {
     fontFamily: 'JosefinSans-Regular',
