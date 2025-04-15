@@ -5,11 +5,12 @@ const { width } = Dimensions.get('window');
 
 const Home = () => {
   const bannerData = [
-    { id: 1, title: 'Welcome Offer', image: "https://png.pngtree.com/png-vector/20220716/ourmid/pngtree-bicycle-repair-service-men-workers-fixing-vector-png-image_6001978.png" },
-    { id: 2, title: 'Special Discount', image: "https://png.pngtree.com/png-vector/20220716/ourmid/pngtree-bicycle-repair-service-men-workers-fixing-vector-png-image_6001978.png" },
-    { id: 3, title: 'New Arrivals', image: "https://png.pngtree.com/png-vector/20220716/ourmid/pngtree-bicycle-repair-service-men-workers-fixing-vector-png-image_6001978.png" },
-    { id: 4, title: 'Limited Time Deal', image: "https://png.pngtree.com/png-vector/20220716/ourmid/pngtree-bicycle-repair-service-men-workers-fixing-vector-png-image_6001978.png" },
+    { id: 1, title: 'Welcome Offer', image: "https://img.freepik.com/premium-vector/motorcycle-banner-social-media-post-facebook-cover-banner_252779-866.jpg?w=1480" },
+    { id: 2, title: 'Special Discount', image: "https://img.freepik.com/premium-psd/psd-black-friday-super-sale-facebook-cover-template_837981-871.jpg?w=1800" },
+    { id: 3, title: 'New Arrivals', image: "https://img.freepik.com/premium-psd/motorcycle-sale-banner_252779-819.jpg?w=1380" },
+    { id: 4, title: 'Limited Time Deal', image: "https://img.freepik.com/premium-psd/psd-black-friday-super-sale-facebook-cover-template_683133-591.jpg?w=1380" },
   ];
+  
 
   const cards = [
     { id: 1, image: require('../assets/images/bike.png'), title: 'Basic Repair' },
@@ -62,7 +63,7 @@ const Home = () => {
         >
           {bannerData.map((item) => (
             <View key={item.id} style={styles.bannerCard}>
-              <Image source={{ uri: item.image }} style={styles.bannerImage} />
+              <Image source={{uri:item.image} } style={styles.bannerImage} />
               <Text style={styles.bannerCardText}>{item.title}</Text>
             </View>
           ))}
