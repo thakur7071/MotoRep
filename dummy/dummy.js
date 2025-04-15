@@ -1,7 +1,7 @@
 const services = [
     {
       id: 1,
-      logo: "https://cdn-icons-png.flaticon.com/512/929/929426.png", // Wrench & gear icon
+      logo: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Bike icon
       name: "Basic Bike Service",
       details: "Includes chain oiling, brake adjustment, and tire pressure check.",
       price: "₹299",
@@ -9,7 +9,7 @@ const services = [
     },
     {
       id: 2,
-      logo: "https://cdn-icons-png.flaticon.com/512/847/847969.png", // Tools & gear icon
+      logo: "https://cdn-icons-png.flaticon.com/512/4132/4132465.png", // Tools & gear icon
       name: "Full Bike Service",
       details: "Complete inspection, engine oil change, brake fluid top-up, and washing.",
       price: "₹799",
@@ -17,7 +17,7 @@ const services = [
     },
     {
       id: 3,
-      logo: "https://cdn-icons-png.flaticon.com/512/190/190411.png", // Engine icon
+      logo: "https://cdn-icons-png.flaticon.com/512/870/870576.png", // Engine icon
       name: "Bike Engine Repair",
       details: "Engine noise, overheating, or performance issues? We fix it all.",
       price: "₹1499",
@@ -25,7 +25,7 @@ const services = [
     },
     {
       id: 4,
-      logo: "https://cdn-icons-png.flaticon.com/512/5820/5820360.png", // Brake disc icon
+      logo: "https://cdn-icons-png.flaticon.com/512/482/482245.png", // Brake disc icon
       name: "Brake Replacement",
       details: "Front & rear brake shoe or pad replacement with testing.",
       price: "₹499",
