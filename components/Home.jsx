@@ -13,12 +13,12 @@ const Home = () => {
   
 
   const cards = [
-    { id: 1, image: require('../assets/images/bike.png'), title: 'Basic Repair' },
-    { id: 2, image: require('../assets/images/bike-engine.png'), title: 'Engine Check' },
-    { id: 3, image: require('../assets/images/gear.png'), title: 'Gear Adjustment' },
-    { id: 4, image: require('../assets/images/bikebattery.png'), title: 'Battery Service' },
-    { id: 5, image: require('../assets/images/bike-tyre.png'), title: 'Tire Replacement' },
-    { id: 6, image: require('../assets/images/fuel.png'), title: 'Oil Change' }
+    { id: 1, image: require('../assets/images/HomeService/bike.png'), title: 'Basic Repair' },
+    { id: 2, image: require('../assets/images/HomeService/bike-engine.png'), title: 'Engine Check' },
+    { id: 3, image: require('../assets/images/HomeService/gear.png'), title: 'Gear Adjustment' },
+    { id: 4, image: require('../assets/images/HomeService/bikebattery.png'), title: 'Battery Service' },
+    { id: 5, image: require('../assets/images/HomeService/bike-tyre.png'), title: 'Tire Replacement' },
+    { id: 6, image: require('../assets/images/HomeService/fuel.png'), title: 'Oil Change' }
   ];
 
   return (
