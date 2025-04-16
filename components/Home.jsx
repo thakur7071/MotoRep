@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   card: {
     borderWidth: 1,
     borderColor: '#000A26',
-    padding: 15,
+    padding: 5,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

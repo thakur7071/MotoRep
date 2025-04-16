@@ -48,14 +48,13 @@ const styles = StyleSheet.create({
    
     color: '#1E1E1E',
     marginBottom: 20,
-    alignSelf:"center",
   },
   list: {
     paddingBottom: 30,
   },
   card: {
     backgroundColor: '#A6C6D8',
- 
+   borderRadius:10,
     flexDirection: 'row',
     padding: 20,
     marginBottom: 16,
