@@ -1,10 +1,12 @@
-import { Tabs } from "expo-router";
+import { Stack, Tabs } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';
 
 export default function TabsLayout() {
   return (
+  
     <Tabs
+    
       screenOptions={{
         headerShown: false,
         tabBarStyle: { backgroundColor: '#000A26', height: 40 },
@@ -54,6 +56,18 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+<Tabs.Screen
+        name="login"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+              <Ionicons name="log-in-outline" size={22} color={color} />
+            </View>
+          ),
+        }}
+      />
+
     </Tabs>
   );
 }
