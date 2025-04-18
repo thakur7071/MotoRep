@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import RNPickerSelect from 'react-native-picker-select'; // Importing RNPickerSelect
-import Navbar from '../components/Navbar'; // Corrected import
+import RNPickerSelect from 'react-native-picker-select';
+import Navbar from '../components/Navbar';
 
 const Repair = () => {
   const router = useRouter();
-  const [bikeName, setBikeName] = useState('');
+  const [bikeModel, setBikeModel] = useState('');
   const [bikeNumber, setBikeNumber] = useState('');
   const [selectedService, setSelectedService] = useState('');
 
@@ -19,98 +19,85 @@ const Repair = () => {
   ];
 
   const handleSubmit = () => {
-    if (bikeName.trim() === '') {
-      alert('Please enter your bike name');
+    if (!bikeModel.trim()) {
+      Alert.alert('Validation Error', 'Please enter your bike model.');
       return;
     }
 
-    if (bikeNumber.trim() === '') {
-      alert('Please enter your bike number');
+    if (!bikeNumber.trim()) {
+      Alert.alert('Validation Error', 'Please enter your bike number.');
       return;
     }
 
-    if (selectedService === '') {
-      alert('Please select a service');
+    if (!selectedService) {
+      Alert.alert('Validation Error', 'Please select a service.');
       return;
     }
 
-    console.log({ 
-      bikeName,
+    const serviceName = services.find(s => s.id === selectedService)?.name;
+
+    console.log({
+      bikeModel,
       bikeNumber,
       serviceId: selectedService,
-      serviceName: services.find(s => s.id === selectedService)?.name
+      serviceName,
     });
 
-    alert('Service booked successfully!');
+    Alert.alert('Success', 'Your bike service has been booked!');
   };
 
   return (
     <View style={styles.container}>
       <Navbar />
+
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Enter Bike Details</Text>
+        <Text style={styles.headerTitle}>Book a Bike Service</Text>
+        <Text style={styles.headerSubtitle}>Fill out your bike details to continue</Text>
       </View>
 
       <View style={styles.formContainer}>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Bike Name</Text>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Bike Model</Text>
           <TextInput
             style={styles.input}
-            placeholder="Enter your bike name"
-            value={bikeName}
-            onChangeText={setBikeName}
+            placeholder="e.g., Yamaha R15"
+            value={bikeModel}
+            onChangeText={setBikeModel}
           />
         </View>
 
-        <View style={styles.inputContainer}>
+        <View style={styles.inputGroup}>
           <Text style={styles.label}>Bike Number</Text>
           <TextInput
             style={styles.input}
-            placeholder="Enter your bike number"
+            placeholder="e.g., MH12AB1234"
             value={bikeNumber}
             onChangeText={setBikeNumber}
             keyboardType="default"
           />
         </View>
 
-        <View style={styles.inputContainer}>
+        <View style={styles.inputGroup}>
           <Text style={styles.label}>Select Service</Text>
           <RNPickerSelect
-            onValueChange={(value) => setSelectedService(value)}
+            onValueChange={setSelectedService}
             items={services.map(service => ({
               label: service.name,
               value: service.id,
             }))}
-            placeholder={{ label: 'Select a service', value: '' }}
+            placeholder={{ label: 'Choose a service', value: '' }}
             style={{
-              inputAndroid: {
-                fontFamily: 'JosefinSans-Regular',
-                fontSize: 16,
-                color: '#000A26',
-                padding: 10,
-              },
-              inputIOS: {
-                fontFamily: 'JosefinSans-Regular',
-                fontSize: 16,
-                color: '#000A26',
-                padding: 10,
-              },
+              inputAndroid: styles.pickerInput,
+              inputIOS: styles.pickerInput,
               placeholder: {
                 fontFamily: 'JosefinSans-Regular',
                 color: '#A6C6D8',
-              },
-              iconContainer: {
-                top: 10,
-                right: 12,
               },
             }}
           />
         </View>
 
-        <TouchableOpacity 
-          style={styles.submitButton}
-          onPress={handleSubmit} activeOpacity={0.8}
-        >
+        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit} activeOpacity={0.8}>
           <Text style={styles.submitButtonText}>Continue</Text>
         </TouchableOpacity>
       </View>
@@ -123,56 +110,73 @@ export default Repair;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D6E6F2',
+    backgroundColor: '#EDF5FC',
   },
   header: {
     padding: 20,
+    alignItems: 'center',
   },
   headerTitle: {
     fontFamily: 'JosefinSans-Regular',
-    fontSize: 24,
+    fontSize: 26,
     color: '#000A26',
-    textAlign: 'center',
     marginBottom: 5,
+  },
+  headerSubtitle: {
+    fontFamily: 'JosefinSans-Regular',
+    fontSize: 14,
+    color: '#5B728A',
   },
   formContainer: {
     padding: 20,
-    backgroundColor: '#fff',
-    borderRadius: 15,
     margin: 15,
-    elevation: 3,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
     shadowColor: '#000',
+    elevation: 4,
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
-  inputContainer: {
-    marginBottom: 15,
+  inputGroup: {
+    marginBottom: 20,
   },
   label: {
     fontFamily: 'JosefinSans-Regular',
     fontSize: 16,
     color: '#000A26',
-    marginBottom: 5,
+    marginBottom: 6,
   },
   input: {
     fontFamily: 'JosefinSans-Regular',
     borderWidth: 1,
-    borderColor: '#A6C6D8',
+    borderColor: '#B5CFE4',
     borderRadius: 8,
-    padding: 10,
+    padding: 12,
     fontSize: 16,
+    backgroundColor: '#F8FAFC',
+  },
+  pickerInput: {
+    height:55,
+    fontFamily: 'JosefinSans-Regular',
+    fontSize: 16,
+    color: '#000A26',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    backgroundColor: '#F8FAFC',
+    borderWidth: 1,
+    borderColor: '#B5CFE4',
+    borderRadius: 8,
   },
   submitButton: {
     backgroundColor: '#000A26',
-    padding: 15,
+    paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10,
   },
   submitButtonText: {
     fontFamily: 'JosefinSans-Regular',
-    color: '#fff',
+    color: '#FFFFFF',
     fontSize: 18,
   },
 });
