@@ -9,12 +9,11 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-
+  const router = useRouter();
+  const [mobileNumber, setMobileNumber] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,28 +26,22 @@ const Login = () => {
 
         <TextInput
           style={styles.input}
-          placeholder="Email"
+          placeholder="Mobile Number"
           placeholderTextColor="#999"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
+          value={mobileNumber}
+          onChangeText={setMobileNumber}
+          keyboardType="phone-pad"
           autoCapitalize="none"
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#999"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
 
-        <TouchableOpacity>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+          <Text style={styles.buttonText}>Log In</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} activeOpacity={0.8} >
-          <Text style={styles.buttonText}>Log In</Text>
+        <TouchableOpacity>
+          <Text style={styles.signupText} onPress={() => router.push('/SignUp')}>
+            Don't have an account? <Text style={styles.signupLink}>Sign up here</Text>
+          </Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -88,12 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 15,
   },
-  forgotPassword: {
-    fontFamily: 'JosefinSans-Regular',
-    color: '#4a90e2',
-    textAlign: 'right',
-    marginBottom: 20,
-  },
   button: {
     backgroundColor: '#000A26',
     paddingVertical: 13,
@@ -104,6 +91,17 @@ const styles = StyleSheet.create({
     fontFamily: 'JosefinSans-Regular',
     color: '#fff',
     fontSize: 16,
+    fontWeight: '600',
+  },
+  signupText: {
+    fontFamily: 'JosefinSans-Regular',
+    color: '#555',
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  signupLink: {
+    fontSize: 15,
+    color: '#4a90e2',
     fontWeight: '600',
   },
 });

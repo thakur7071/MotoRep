@@ -1,8 +1,19 @@
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 import services from '../../dummy/dummy';
 
 const Bookings = () => {
+  const navigation = useNavigation();
+
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <Image source={{ uri: item.logo }} style={styles.logo} />
@@ -11,7 +22,11 @@ const Bookings = () => {
         <Text style={styles.details}>{item.details}</Text>
         <View style={styles.footer}>
           <Text style={styles.price}>{item.price}</Text>
-          <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => console.log(`${item.name} booked!`)}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.button}
+            onPress={() => console.log(`${item.name} booked!`)}
+          >
             <Text style={styles.buttonText}>{item.buttonText}</Text>
           </TouchableOpacity>
         </View>
@@ -21,7 +36,15 @@ const Bookings = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Book Now</Text>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="#1E1E1E" />
+        </TouchableOpacity>
+        <View style={styles.centerContainer}>
+          <Text style={styles.heading}>Book Now</Text>
+        </View>
+      </View>
+
       <FlatList
         data={services}
         keyExtractor={(item) => item.id.toString()}
@@ -40,26 +63,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D6E6F2',
     paddingHorizontal: 16,
-    paddingTop: 30,
   },
+  header: {
+    height: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    position: 'relative',
+  },
+  backIcon: {
+    position: 'absolute',
+    left: 0,
+    height: '100%',
+    justifyContent: 'center',
+  },
+  centerContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  
   heading: {
     fontFamily: 'JosefinSans-Regular',
     fontSize: 25,
-   
     color: '#1E1E1E',
-    marginBottom: 20,
   },
   list: {
     paddingBottom: 30,
   },
   card: {
     backgroundColor: '#A6C6D8',
-   borderRadius:10,
+    borderRadius: 10,
     flexDirection: 'row',
     padding: 20,
     marginBottom: 16,
-
-   
   },
   logo: {
     width: 40,
@@ -74,7 +111,6 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: 'JosefinSans-Regular',
     fontSize: 18,
-  
     color: '#333',
     marginBottom: 4,
   },

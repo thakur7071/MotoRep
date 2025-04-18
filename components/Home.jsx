@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, Image } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
 const Home = () => {
+  const router = useRouter();
+
   const bannerData = [
     { id: 1, title: 'Welcome Offer', image: "https://img.freepik.com/premium-vector/motorcycle-banner-social-media-post-facebook-cover-banner_252779-866.jpg?w=1480" },
     { id: 2, title: 'Special Discount', image: "https://img.freepik.com/premium-psd/psd-black-friday-super-sale-facebook-cover-template_837981-871.jpg?w=1800" },
@@ -27,7 +30,11 @@ const Home = () => {
       <View style={styles.heroSection}>
         <Text style={styles.title}>Welcome to MotoRep</Text>
         <Text style={styles.subtitle}>"Reliable Bike Repairs at Your Doorstep"</Text>
-        <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+        <TouchableOpacity 
+          style={styles.button} 
+          activeOpacity={0.8}
+          onPress={() => router.push('/repair')}
+        >
           <Text style={styles.buttonText}>Book a Repair</Text>
         </TouchableOpacity>
       </View>
