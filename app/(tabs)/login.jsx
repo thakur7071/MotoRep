@@ -60,6 +60,13 @@ const Login = () => {
         setErrors({ ...errors, mobile: 'Mobile number must be 10 digits' });
         return;
       }
+
+      // Navigate to OTP page with mobile
+      router.push({
+        pathname: '/otp',
+        params: { type: 'mobile', value: mobileNumber },
+      });
+      return;
     }
 
     if (email !== '') {
@@ -68,10 +75,14 @@ const Login = () => {
         setErrors({ ...errors, email: 'Enter a valid email address' });
         return;
       }
-    }
 
-    // Proceed with login
-    console.log('Logging in with:', mobileNumber || email);
+      // Navigate to OTP page with email
+      router.push({
+        pathname: '/otp',
+        params: { type: 'email', value: email },
+      });
+      return;
+    }
   };
 
   return (

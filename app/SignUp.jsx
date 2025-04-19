@@ -9,11 +9,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useRouter } from 'expo-router';
 
 const SignUp = () => {
   const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({ mobile: '', email: '' });
+  const router = useRouter();
 
   const handleMobileChange = (text) => {
     setMobile(text);
@@ -56,6 +58,13 @@ const SignUp = () => {
         setErrors({ ...errors, mobile: 'Mobile number must be 10 digits' });
         return;
       }
+
+      // ✅ Navigate to OTP with mobile
+      router.push({
+        pathname: '/otp',
+        params: { value: mobile, type: 'mobile' },
+      });
+      return;
     }
 
     if (email !== '') {
@@ -64,10 +73,13 @@ const SignUp = () => {
         setErrors({ ...errors, email: 'Enter a valid email address' });
         return;
       }
-    }
 
-    // Proceed with signup
-    console.log('Signing up with:', mobile || email);
+      // ✅ Navigate to OTP with email
+      router.push({
+        pathname: '/otp',
+        params: { value: email, type: 'email' },
+      });
+    }
   };
 
   return (
