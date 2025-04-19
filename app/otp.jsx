@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Otp = () => {
   const { value: identifier, type } = useLocalSearchParams();
@@ -58,8 +59,11 @@ const Otp = () => {
         ))}
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Verify OTP</Text>
+      <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={handleSubmit}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <MaterialCommunityIcons name="tools" size={20} color="#fff" style={{ marginRight: 8 }} />
+          <Text style={styles.buttonText}>Verify OTP</Text>
+        </View>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -91,7 +95,6 @@ const styles = StyleSheet.create({
   identifier: {
     fontFamily: 'JosefinSans-Regular',
     color: '#000',
-
   },
   otpContainer: {
     flexDirection: 'row',
