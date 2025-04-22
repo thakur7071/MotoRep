@@ -27,7 +27,7 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="MyBikes"
+        name="Services"
         options={{
           tabBarIcon: ({ color }) => (
             <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%' }}>
