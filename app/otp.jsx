@@ -9,11 +9,13 @@ import {
 } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const Otp = () => {
-  const { value: identifier, type } = useLocalSearchParams();
+  const { value: identifier, type, isSignup } = useLocalSearchParams();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
+  const navigation = useNavigation();
 
   const handleOtpChange = (text, index) => {
     if (text.length > 1) return;
@@ -31,7 +33,11 @@ const Otp = () => {
     const otpValue = otp.join('');
     if (otpValue.length === 6) {
       console.log('OTP Entered:', otpValue);
-      // proceed with verification
+      if (isSignup === 'true' || isSignup === true) {
+        navigation.navigate('UserProfile');
+      } else {
+        navigation.navigate('UserProfile');
+      }
     } else {
       alert('Enter a valid 6-digit OTP');
     }
@@ -41,7 +47,7 @@ const Otp = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Enter OTP</Text>
       <Text style={styles.subtitle}>
-        OTP has been sent to your {type === 'mobile' ? 'mobile number' : 'email'}:{" "}
+        OTP has been sent to your {type === 'mobile' ? 'mobile number' : 'email'}:{' '}
         <Text style={styles.identifier}>{identifier}</Text>
       </Text>
 
