@@ -58,7 +58,7 @@ export default function TabsLayout() {
       />
 
 <Tabs.Screen
-        name="login"
+        name="(authlogin)/login"
         options={{
           tabBarIcon: ({ color }) => (
             <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%' }}>
@@ -67,6 +67,8 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+
 
     </Tabs>
   );

@@ -40,7 +40,7 @@ const UserProfile3 = () => {
 
         {/* Add Button */}
         <TouchableOpacity onPress={() => router.push('/')} activeOpacity={0.85} style={styles.addBtn}>
-          <Text style={styles.addText}>Add</Text>
+          <Text style={styles.addText}>Save</Text>
         </TouchableOpacity>
       </View>
     </View>

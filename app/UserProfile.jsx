@@ -87,7 +87,7 @@ const UserProfile = () => {
        
         disabled={!name || !aadharImage || !dlImage} 
       >
-        <Text style={styles.nextText}>Add</Text>
+        <Text style={styles.nextText}>Next</Text>
       </TouchableOpacity>
     </ScrollView>
   );

@@ -7,15 +7,14 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
 const Otp = () => {
-  const { value: identifier, type, isSignup } = useLocalSearchParams();
+  const { value: identifier } = useLocalSearchParams();
+  const router = useRouter();
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
-  const navigation = useNavigation();
 
   const handleOtpChange = (text, index) => {
     if (text.length > 1) return;
@@ -29,15 +28,17 @@ const Otp = () => {
     }
   };
 
+  const handleKeyPress = (e, index) => {
+    if (e.nativeEvent.key === 'Backspace' && otp[index] === '' && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
   const handleSubmit = () => {
     const otpValue = otp.join('');
     if (otpValue.length === 6) {
       console.log('OTP Entered:', otpValue);
-      if (isSignup === 'true' || isSignup === true) {
-        navigation.navigate('UserProfile');
-      } else {
-        navigation.navigate('UserProfile');
-      }
+      router.replace('/'); // Navigate to home screen
     } else {
       alert('Enter a valid 6-digit OTP');
     }
@@ -47,7 +48,7 @@ const Otp = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Enter OTP</Text>
       <Text style={styles.subtitle}>
-        OTP has been sent to your {type === 'mobile' ? 'mobile number' : 'email'}:{' '}
+        OTP has been sent to your mobile number:{' '}
         <Text style={styles.identifier}>{identifier}</Text>
       </Text>
 
@@ -61,6 +62,7 @@ const Otp = () => {
             keyboardType="number-pad"
             maxLength={1}
             onChangeText={(text) => handleOtpChange(text, index)}
+            onKeyPress={(e) => handleKeyPress(e, index)}
           />
         ))}
       </View>
