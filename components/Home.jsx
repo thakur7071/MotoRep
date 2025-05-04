@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import { accessories,bikeengine,bike,bikebattery,checkup,cleaning,fuel,gear,insurance,tyre } from "../assets/index";
+
 
 const { width } = Dimensions.get('window');
 
@@ -16,15 +18,15 @@ const Home = () => {
   
 
   const cards = [
-    { id: 1, image: require('../assets/images/HomeService/bike.png'), title: 'Service (at home)' },
-    { id: 2, image: require('../assets/images/HomeService/bike-engine.png'), title: 'Repair (at home)' },
-    { id: 3, image: require('../assets/images/HomeService/gear.png'), title: 'Engine Repair (garage)' },
-    { id: 4, image: require('../assets/images/HomeService/bikebattery.png'), title: 'Battery replacement (at home)' },
-    { id: 5, image: require('../assets/images/HomeService/accessories.png'), title: 'Accessories (at home)' },
-    { id: 6, image: require('../assets/images/HomeService/checkup.png'), title: 'Doorstep checkup' },
-    { id: 7, image: require('../assets/images/HomeService/cleaning.png'), title: 'Cleaning and polishing (at home)' },
-    { id: 8, image: require('../assets/images/HomeService/tyre.png'), title: 'Tyre replacement on demand' },
-    { id: 9, image: require('../assets/images/HomeService/insurance.png'), title: 'Insurance (Online)' },
+    { id: 1, image: bike, title: 'Service (at home)' },
+    { id: 2, image: bikeengine, title: 'Repair (at home)' },
+    { id: 3, image: gear, title: 'Engine Repair (garage)' },
+    { id: 4, image: bikebattery, title: 'Battery replacement (at home)' },
+    { id: 5, image: accessories, title: 'Accessories (at home)' },
+    { id: 6, image: checkup, title: 'Doorstep checkup' },
+    { id: 7, image: cleaning, title: 'Cleaning and polishing (at home)' },
+    { id: 8, image: tyre, title: 'Tyre replacement on demand' },
+    { id: 9, image: insurance, title: 'Insurance (Online)' },
   ];
   
 
