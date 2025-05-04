@@ -1,32 +1,46 @@
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { accessories, bikeengine, bike, bikebattery, checkup, cleaning, gear, insurance, tyre } from "../../assets/index";
 
 const cards = [
-  { id: 1, image: require('../../assets/images/HomeService/bike.png'), title: 'Service (at home)', desc: 'Regular bike servicing at your doorstep.' },
-  { id: 2, image: require('../../assets/images/HomeService/bike-engine.png'), title: 'Repair (at home)', desc: 'Minor repairs handled conveniently at home.' },
-  { id: 3, image: require('../../assets/images/HomeService/gear.png'), title: 'Engine Repair (garage)', desc: 'Full engine diagnostics and repairs at garage.' },
-  { id: 4, image: require('../../assets/images/HomeService/bikebattery.png'), title: 'Battery replacement (at home)', desc: 'Quick battery change at your location.' },
-  { id: 5, image: require('../../assets/images/HomeService/accessories.png'), title: 'Accessories (at home)', desc: 'Install or upgrade accessories from home.' },
-  { id: 6, image: require('../../assets/images/HomeService/checkup.png'), title: 'Doorstep checkup', desc: 'Get your bike checked before the ride.' },
-  { id: 7, image: require('../../assets/images/HomeService/cleaning.png'), title: 'Cleaning and polishing (at home)', desc: 'Shine and clean your bike at home.' },
-  { id: 8, image: require('../../assets/images/HomeService/tyre.png'), title: 'Tyre replacement on demand', desc: 'Instant tyre changes, no hassle.' },
-  { id: 9, image: require('../../assets/images/HomeService/insurance.png'), title: 'Insurance (Online)', desc: 'Buy or renew insurance online.' },
+  { id: 1, image: bike, title: 'Service (at home)', desc: 'Regular bike servicing at your doorstep.', price: '₹500' },
+  { id: 2, image: bikeengine, title: 'Repair (at home)', desc: 'Minor repairs handled conveniently at home.', price: '₹300' },
+  { id: 3, image: gear, title: 'Engine Repair (garage)', desc: 'Full engine diagnostics and repairs at garage.', price: '₹1500' },
+  { id: 4, image: bikebattery, title: 'Battery replacement (at home)', desc: 'Quick battery change at your location.', price: '₹600' },
+  { id: 5, image: accessories, title: 'Accessories (at home)', desc: 'Install or upgrade accessories from home.', price: '₹700' },
+  { id: 6, image: checkup, title: 'Doorstep checkup', desc: 'Get your bike checked before the ride.', price: '₹200' },
+  { id: 7, image: cleaning, title: 'Cleaning and polishing (at home)', desc: 'Shine and clean your bike at home.', price: '₹400' },
+  { id: 8, image: tyre, title: 'Tyre replacement on demand', desc: 'Instant tyre changes, no hassle.', price: '₹800' },
+  { id: 9, image: insurance, title: 'Insurance (Online)', desc: 'Buy or renew insurance online.', price: '₹1000' },
 ];
 
 const Services = () => {
   const navigation = useNavigation();
+  const [selectedService, setSelectedService] = useState(null);
 
-  const handleBook = (serviceName) => {
-    alert(`Booking for: ${serviceName}`);
+  const handleBook = (service) => {
+    setSelectedService(service);  // Set the selected service
+  };
+
+  const handleCloseModal = () => {
+    setSelectedService(null);  // Close the modal
+  };
+
+  const handleMakePayment = () => {
+    alert(`Proceeding with payment for: ${selectedService.title}`);
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: '#f4f4f4' }}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack()}>
+        <TouchableOpacity 
+          style={styles.backIcon} 
+          onPress={() => navigation.goBack()} 
+          accessibilityLabel="Go back to previous screen"
+        >
           <Ionicons name="arrow-back" size={24} color="#1E1E1E" />
         </TouchableOpacity>
         <View style={styles.centerContainer}>
@@ -37,24 +51,69 @@ const Services = () => {
       {/* Scrollable Content */}
       <ScrollView contentContainerStyle={styles.container}>
         {cards.map((card) => (
-          <View key={card.id} style={styles.bikeCard}>
-            <Image source={card.image} style={styles.bikeImage} />
-            <View style={styles.bikeInfo}>
-              <View style={styles.bikeTopRow}>
-                <Text style={styles.username}>{card.title}</Text>
-              </View>
-              <Text numberOfLines={2} style={styles.description}>{card.desc}</Text>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.bookButton}
-                onPress={() => handleBook(card.title)}
-              >
-                <Text style={styles.bookButtonText}>Book Service</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <BikeCard 
+            key={card.id} 
+            card={card} 
+            onBook={handleBook} 
+          />
         ))}
       </ScrollView>
+
+      {/* Modal for Service Details */}
+      <Modal
+        visible={selectedService !== null}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={handleCloseModal}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            {selectedService && (
+              <>
+                <Image source={selectedService.image} style={styles.modalImage} />
+                <Text style={styles.modalTitle}>{selectedService.title}</Text>
+                <Text style={styles.modalDescription}>{selectedService.desc}</Text>
+                <Text style={styles.modalPrice}>{selectedService.price}</Text>
+                <TouchableOpacity
+                  style={styles.paymentButton}
+                  onPress={handleMakePayment}
+                >
+                  <Text style={styles.paymentButtonText}>Make Payment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.closeButton}
+                  onPress={handleCloseModal}
+                >
+                  <Text style={styles.closeButtonText}>Close</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+};
+
+// BikeCard Component
+const BikeCard = ({ card, onBook }) => {
+  return (
+    <View style={styles.bikeCard}>
+      <Image source={card.image} style={styles.bikeImage} />
+      <View style={styles.bikeInfo}>
+        <View style={styles.bikeTopRow}>
+          <Text style={styles.username}>{card.title}</Text>
+        </View>
+        <Text numberOfLines={2} style={styles.description}>{card.desc}</Text>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.bookButton}
+          onPress={() => onBook(card)}
+          accessibilityLabel={`Book ${card.title} service`}
+        >
+          <Text style={styles.bookButtonText}>Book Service</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -106,12 +165,13 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 8,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     marginRight: 10,
   },
   bikeInfo: {
     flex: 1,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   bikeTopRow: {
     flexDirection: 'row',
@@ -139,6 +199,64 @@ const styles = StyleSheet.create({
   bookButtonText: {
     color: '#fff',
     fontSize: 12,
+    fontFamily: 'JosefinSans-Regular',
+  },
+
+  // Modal Styles
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 8,
+    width: '80%',
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+    marginBottom: 15,
+  },
+  modalTitle: {
+    fontFamily: 'JosefinSans-Regular',
+    fontSize: 20,
+    color: '#1E1E1E',
+    marginBottom: 10,
+  },
+  modalDescription: {
+    fontFamily: 'JosefinSans-Regular',
+    fontSize: 14,
+    color: '#777',
+    marginBottom: 10,
+  },
+  modalPrice: {
+    fontFamily: 'JosefinSans-Regular',
+    fontSize: 18,
+    color: '#1E1E1E',
+    marginBottom: 20,
+  },
+  paymentButton: {
+    backgroundColor: '#1E1E1E',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  paymentButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontFamily: 'JosefinSans-Regular',
+  },
+  closeButton: {
+    marginTop: 10,
+  },
+  closeButtonText: {
+    color: '#1E1E1E',
+    fontSize: 14,
     fontFamily: 'JosefinSans-Regular',
   },
 });
