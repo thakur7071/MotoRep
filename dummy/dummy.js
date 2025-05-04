@@ -5,7 +5,7 @@ const services = [
       name: "Basic Bike Service",
       details: "Includes chain oiling, brake adjustment, and tire pressure check.",
       price: "₹299",
-      buttonText: "Book Now",
+      buttonText: "Re-Book",
     },
     {
       id: 2,
@@ -13,7 +13,7 @@ const services = [
       name: "Full Bike Service",
       details: "Complete inspection, engine oil change, brake fluid top-up, and washing.",
       price: "₹799",
-      buttonText: "Book Now",
+      buttonText: "Re-Book",
     },
     {
       id: 3,
@@ -21,7 +21,7 @@ const services = [
       name: "Bike Engine Repair",
       details: "Engine noise, overheating, or performance issues? We fix it all.",
       price: "₹1499",
-      buttonText: "Book Now",
+      buttonText: "Re-Book",
     },
     {
       id: 4,
@@ -29,7 +29,7 @@ const services = [
       name: "Brake Replacement",
       details: "Front & rear brake shoe or pad replacement with testing.",
       price: "₹499",
-      buttonText: "Book Now",
+      buttonText: "Re-Book",
     },
     {
       id: 5,
@@ -37,7 +37,7 @@ const services = [
       name: "Bike Washing & Polishing",
       details: "Foam wash and polish to make your bike shine like new.",
       price: "₹199",
-      buttonText: "Book Now",
+      buttonText: "Re-Book",
     },
   ];
   

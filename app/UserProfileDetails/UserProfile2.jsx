@@ -11,7 +11,7 @@ const UserProfile2 = () => {
   return (
     <View style={styles.container}>
       {/* Skip Button */}
-      <TouchableOpacity onPress={() => router.push('/UserProfile3')} activeOpacity={0.85} style={styles.skipBtn}>
+      <TouchableOpacity onPress={() => router.push('/UserProfileDetails/UserProfile3')} activeOpacity={0.85} style={styles.skipBtn}>
         <Text style={styles.skipText}>Skip</Text>
       </TouchableOpacity>
 
@@ -32,7 +32,7 @@ const UserProfile2 = () => {
         />
 
         {/* Add Button */}
-        <TouchableOpacity onPress={() => router.push('/UserProfile3')} activeOpacity={0.85} style={styles.addBtn}>
+        <TouchableOpacity onPress={() => router.push('/UserProfileDetails/UserProfile3')} activeOpacity={0.85} style={styles.addBtn}>
           <Text style={styles.addText}>Next</Text>
         </TouchableOpacity>
       </View>

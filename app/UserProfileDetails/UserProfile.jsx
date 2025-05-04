@@ -82,7 +82,7 @@ const UserProfile = () => {
       </View>
 
       <TouchableOpacity
-        activeOpacity={0.85} onPress={() => router.push('/UserProfile2')}
+        activeOpacity={0.85} onPress={() => router.push('/UserProfileDetails/UserProfile2')}
         style={[styles.nextBtn, !name || !aadharImage || !dlImage ? { opacity: 0.6 } : {}]}
        
         disabled={!name || !aadharImage || !dlImage} 

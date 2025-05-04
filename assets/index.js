@@ -8,4 +8,4 @@ import fuel from "../assets/images/HomeService/fuel.png"
 import gear from "../assets/images/HomeService/gear.png"
 import insurance from "../assets/images/HomeService/insurance.png"
 import tyre from "../assets/images/HomeService/tyre.png"
-export { accessories,bikeengine,bike,bikebattery,checkup,cleaning,fuel,cleaning,gear,insurance,tyre};
+export { accessories,bikeengine,bike,bikebattery,checkup,cleaning,fuel,gear,insurance,tyre};

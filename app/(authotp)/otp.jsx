@@ -38,7 +38,7 @@ const Otp = () => {
     const otpValue = otp.join('');
     if (otpValue.length === 6) {
       console.log('OTP Entered:', otpValue);
-      router.replace('/'); // Navigate to home screen
+      router.replace('/UserProfileDetails/UserProfile'); // Navigate to home screen
     } else {
       alert('Enter a valid 6-digit OTP');
     }
