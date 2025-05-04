@@ -1,7 +1,7 @@
 // app/(tabs)/index.tsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Navbar from '../../components/Navbar'; // Path to Navbar
+
 import Home from '../../components/Home';
 
 import {useFonts} from 'expo-font';
@@ -16,7 +16,7 @@ export default function HomeScreen() {
   }
   return (
     <View style={styles.container}>
-      <Navbar />
+   
     <Home/>
     </View>
   );
