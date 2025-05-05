@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, Image, Modal } from 'react-native';
 import { useRouter } from 'expo-router';
 import { accessories, bikeengine, bike, bikebattery, checkup, cleaning, fuel, gear, insurance, tyre } from "../assets/index";
-
 const { width } = Dimensions.get('window');
 
 const Home = () => {
@@ -37,7 +36,7 @@ const Home = () => {
   };
 
   const handleMakePayment = () => {
-    alert(`Proceeding with payment for: ${selectedService.title}`);
+    router.push('/Payment/Payment');
   };
 
   return (
@@ -106,13 +105,13 @@ const Home = () => {
               <Text style={styles.modalTitle}>{selectedService.title}</Text>
               <Text style={styles.modalDescription}>{selectedService.desc}</Text>
               <Text style={styles.modalPrice}>{selectedService.price}</Text>
-              <TouchableOpacity
+              <TouchableOpacity activeOpacity={0.85}
                 style={styles.paymentButton}
                 onPress={handleMakePayment}
               >
                 <Text style={styles.paymentButtonText}>Make Payment</Text>
               </TouchableOpacity>
-              <TouchableOpacity
+              <TouchableOpacity activeOpacity={0.85}
                 style={styles.closeButton}
                 onPress={handleCloseModal}
               >

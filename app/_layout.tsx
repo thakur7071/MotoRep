@@ -57,7 +57,7 @@ export default function Layout() {
           title: '',
           headerRight: () => (
             <Text style={{
-              marginRight: 15,
+              marginRight: 20,
               fontWeight: '600',
               fontSize: 16,
               color: "white",
@@ -119,6 +119,16 @@ export default function Layout() {
           headerTitle: 'Privacy Policy',
         }}
       />
+
+<Drawer.Screen
+  name="Payment/Payment"
+  options={{
+    drawerItemStyle: { display: 'none' },
+    headerShown: true, // Ensure the header is shown
+    headerTitle: '', // Remove the title from the header
+  }}
+/>
+
     </Drawer>
   );
 }

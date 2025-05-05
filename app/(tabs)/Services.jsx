@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { accessories, bikeengine, bike, bikebattery, checkup, cleaning, gear, insurance, tyre } from "../../assets/index";
-
+import { useRouter } from 'expo-router';
 const cards = [
   { id: 1, image: bike, title: 'Service (at home)', desc: 'Regular bike servicing at your doorstep.', price: '₹500' },
   { id: 2, image: bikeengine, title: 'Repair (at home)', desc: 'Minor repairs handled conveniently at home.', price: '₹300' },
@@ -17,6 +17,7 @@ const cards = [
 ];
 
 const Services = () => {
+  const router = useRouter();
   const navigation = useNavigation();
   const [selectedService, setSelectedService] = useState(null);
 
@@ -29,7 +30,7 @@ const Services = () => {
   };
 
   const handleMakePayment = () => {
-    alert(`Proceeding with payment for: ${selectedService.title}`);
+    router.push('/Payment/Payment');
   };
 
   return (
@@ -74,13 +75,13 @@ const Services = () => {
                 <Text style={styles.modalTitle}>{selectedService.title}</Text>
                 <Text style={styles.modalDescription}>{selectedService.desc}</Text>
                 <Text style={styles.modalPrice}>{selectedService.price}</Text>
-                <TouchableOpacity
+                <TouchableOpacity activeOpacity={0.85}
                   style={styles.paymentButton}
                   onPress={handleMakePayment}
                 >
                   <Text style={styles.paymentButtonText}>Make Payment</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+                <TouchableOpacity activeOpacity={0.85}
                   style={styles.closeButton}
                   onPress={handleCloseModal}
                 >

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import RNPickerSelect from 'react-native-picker-select';
-import Navbar from '../components/Navbar';
 
 const Repair = () => {
   const router = useRouter();
@@ -48,14 +47,12 @@ const Repair = () => {
 
   return (
     <View style={styles.container}>
-      <Navbar />
-
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Book a Bike Service</Text>
-        <Text style={styles.headerSubtitle}>Fill out your bike details to continue</Text>
-      </View>
-
       <View style={styles.formContainer}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Book a Bike Service</Text>
+          <Text style={styles.headerSubtitle}>Fill out your bike details to continue</Text>
+        </View>
+
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Bike Model</Text>
           <TextInput
@@ -111,10 +108,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EDF5FC',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
-    padding: 20,
     alignItems: 'center',
+    marginBottom: 20,
   },
   headerTitle: {
     fontFamily: 'JosefinSans-Regular',
@@ -126,10 +125,11 @@ const styles = StyleSheet.create({
     fontFamily: 'JosefinSans-Regular',
     fontSize: 14,
     color: '#5B728A',
+    textAlign: 'center',
   },
   formContainer: {
+    width: '90%',
     padding: 20,
-    margin: 15,
     backgroundColor: '#FFFFFF',
     borderRadius: 15,
     shadowColor: '#000',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFC',
   },
   pickerInput: {
-    height:55,
+    height: 55,
     fontFamily: 'JosefinSans-Regular',
     fontSize: 16,
     color: '#000A26',
